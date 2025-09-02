@@ -1,0 +1,19 @@
+Desafio
+
+Crie as seguintes classes para um sistema bancário:
+
+Cliente → herda da classe Pessoa
+
+Pessoa → tem nome e idade
+
+Cliente → tem um ou mais conta(s)
+
+Conta (abstrata) → tem agência, número da conta e saldo
+
+ContaCorrente → herda de Conta e possui um limite
+
+ContaPoupanca → herda de Conta
+
+Banco → possui clientes, contas e agências
+
+O banco autentica o cliente, a conta e a agência e só assim permite realizar um depósito ou saque.

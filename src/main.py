@@ -1,6 +1,5 @@
-from cp import ContaPoupanca
+from pessoa_utils import Cliente
 
-cp = ContaPoupanca('044441585885',111,222,0)
-cp.depositar(10)
-cp.sacar(5)
-cp.sacar(10)
+teste = Cliente('Gabriel','Mendes',22,'09005182601')
+
+print(teste.cpf)
