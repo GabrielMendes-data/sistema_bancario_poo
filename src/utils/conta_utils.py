@@ -57,4 +57,3 @@ class ContaPoupanca(Conta):
             raise ValueError ('Saldo insuficiente')
         
         self._saldo -= valor
-
