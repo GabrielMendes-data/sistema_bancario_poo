@@ -1,0 +1,195 @@
+🎯 Desafio Avançado: Banco Digital com Transações + Empréstimos + Investimentos
+
+Agora o banco fictício oferece também produtos de investimento, e você precisa projetar um banco de dados que dê suporte a:
+
+movimentações financeiras,
+
+crédito,
+
+e análises de portfólio de investimentos.
+
+📂 Estrutura sugerida do banco
+1. Clientes
+
+id_cliente (PK)
+
+nome
+
+cpf/cnpj (único)
+
+data_nascimento
+
+data_abertura_conta
+
+renda_mensal
+
+cidade / estado / país
+
+tipo_conta (corrente, poupança, premium)
+
+2. Contas
+
+id_conta (PK)
+
+id_cliente (FK → Clientes)
+
+saldo_atual
+
+limite_credito
+
+3. Transacoes
+
+id_transacao (PK)
+
+id_conta (FK → Contas)
+
+data_transacao
+
+valor (positivo = crédito, negativo = débito)
+
+tipo (compra, depósito, saque, transferência, pagamento)
+
+categoria (alimentação, transporte, lazer, salário, etc.)
+
+localizacao
+
+4. Emprestimos
+
+id_emprestimo (PK)
+
+id_cliente (FK → Clientes)
+
+valor_emprestimo
+
+taxa_juros
+
+data_contratacao
+
+data_vencimento
+
+status (ativo, quitado, atrasado)
+
+5. Investimentos
+
+id_investimento (PK)
+
+id_cliente (FK → Clientes)
+
+tipo (renda fixa, fundo, ação, ETF, cripto)
+
+ativo (ex.: PETR4, Tesouro Selic, Bitcoin)
+
+data_aplicacao
+
+valor_aplicado
+
+rentabilidade_percentual (simulada, acumulada desde a aplicação)
+
+status (ativo, resgatado)
+
+6. Movimentacoes_Investimentos (para granularidade maior)
+
+id_movimento (PK)
+
+id_investimento (FK → Investimentos)
+
+data_movimento
+
+tipo (compra, venda, aporte, resgate, dividendo, juro)
+
+valor
+
+📌 Tarefas do Desafio
+1. Modelagem e volumetria
+
+Insira milhares de clientes, cada um com contas bancárias.
+
+Simule dezenas de milhares de transações financeiras.
+
+Cadastre centenas de empréstimos.
+
+Insira pelo menos 20 mil registros de investimentos (com diferentes ativos e rentabilidades).
+
+Gere movimentações de compra, venda e dividendos para enriquecer a base.
+
+2. Consultas intermediárias
+
+Liste o saldo total de cada cliente (contas + investimentos ativos).
+
+Mostre os clientes que têm empréstimos atrasados e ao mesmo tempo investimentos ativos (dívida + patrimônio).
+
+Liste os 5 ativos mais populares entre os clientes.
+
+Mostre a rentabilidade média por tipo de investimento (renda fixa, ações, fundos, etc.).
+
+3. Consultas avançadas (CTE + Window Functions)
+
+Usando ROW_NUMBER, descubra o primeiro investimento de cada cliente.
+
+Usando RANK, liste os clientes com maior patrimônio em cada cidade.
+
+Usando LAG, calcule a evolução de saldo dos investimentos de cada cliente ao longo do tempo.
+
+Usando NTILE(4), divida os clientes em quartis de acordo com o patrimônio total (saldo bancário + investimentos).
+
+Usando SUM() OVER(), monte o extrato acumulado de um investimento após cada movimentação.
+
+Usando CTE recursivo, simule a evolução de um investimento de renda fixa dia a dia (juros compostos aplicados diariamente).
+
+4. Análises para Machine Learning
+
+Monte features que poderiam ser usadas para modelos de:
+
+Risco de crédito:
+
+renda vs. saldo médio vs. dívida,
+
+se tem investimentos ativos ou não,
+
+% do patrimônio líquido comprometido em empréstimos.
+
+Recomendação de investimentos:
+
+perfil de risco (quanto investe em renda fixa vs. variável),
+
+tempo médio de permanência nos ativos,
+
+diversificação da carteira.
+
+Previsão de churn (abandono do banco):
+
+tempo desde o último aporte,
+
+valor médio aplicado mensalmente,
+
+concentração em um único ativo (risco).
+
+Fraude/atividade suspeita:
+
+movimentações muito rápidas de compra/venda,
+
+resgates fora do padrão,
+
+transações internacionais suspeitas.
+
+5. Extra (nível hardcore)
+
+Crie um índice em Movimentacoes_Investimentos(data_movimento, id_investimento) para otimizar consultas históricas.
+
+Monte uma view materializada simulada com a rentabilidade consolidada dos investimentos mês a mês.
+
+Crie um trigger que impeça aportes acima de 80% do saldo disponível da conta corrente.
+
+👉 Esse desafio agora cobre todas as frentes de um banco digital moderno:
+
+Transações financeiras,
+
+Empréstimos,
+
+Investimentos detalhados,
+
+Consultas SQL avançadas,
+
+Base preparada para Machine Learning.
+
+Você quer que eu monte esse desafio em formato de história narrativa (como se fosse um case da fintech) ou prefere que fique no estilo lista de requisitos técnicos que você segue como guia?
