@@ -1,5 +1,5 @@
 from src.infra.connect import ViaCep
-from src.domain.utils import ValidarDocumento
+from src.domain.validacoes import ValidarDocumento
 
 teste = ViaCep('32341310')
 teste = teste.executar_conexao()

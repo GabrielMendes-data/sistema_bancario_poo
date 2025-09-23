@@ -1,5 +1,5 @@
 import requests
-from pandas import json_normalize
+import pandas as pd
 
 class ViaCep:
 
@@ -9,14 +9,22 @@ class ViaCep:
     def url_conexao(self):
         url = f"https://viacep.com.br/ws/{self.cep}/json/"
         return url
-
-    def executar_conexao(self):
+    
+    #funcao para fazer a requisicao
+    def request(self):
         url = self.url_conexao()
         try:
-            data = requests.get(url)
-            return data.json()  # transforma em dicionário
-        except Exception:
-            raise ValueError("CEP inválido")
+            response = requests.get(url)
+            response.raise_for_status()  # Lança um erro para códigos de status HTTP 4xx/5xx
+            return response.json()
+        except requests.RequestException as e:
+            print(f"Erro ao fazer a requisição: {e}")
+            return {"erro": str(e)}
         
     def desempacotar_json(self):
         ...
+
+#TODO: implementar forma de desempacotamento do json
+
+#NOTE: validado dia 22/09 e funcionando
+
